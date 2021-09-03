@@ -2,12 +2,31 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/about" v-if="userInfo['email']">Logout</router-link>
+      <router-link to="/login" v-if="!userInfo['email']">Login</router-link>
+
+      <div style="display: inline" v-if="userInfo['email']"> | Hello {{ userInfo['name'] }}</div>
     </div>
     <router-view />
   </div>
 </template>
 
+<script>
+import {mapGetters} from 'vuex';
+export default {
+  data(){
+    return {
+      userInfo:this.getUserInfo()
+    }
+  },
+  methods:{
+    ...mapGetters({
+      'getUserInfo':'getUserInfo'
+    })
+  },
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
