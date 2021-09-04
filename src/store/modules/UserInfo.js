@@ -1,22 +1,29 @@
 export default {
   state: {
     name: null,
-    email: null
+    email: null,
   },
   actions: {
-    set({ commit}, data) {
-      commit("set", data);
-    }
+    setUserInfo({ commit }, data) {
+      commit("setUserInfo", data);
+    },
+    clearUserInfo({ commit }) {
+      commit("clearUserInfo");
+    },
   },
   mutations: {
-    set(state, { name, email }) {
+    setUserInfo(state, { name, email }) {
       state.name = name;
       state.email = email;
-    }
+    },
+    clearUserInfo(state) {
+      state.name = null;
+      state.email = null;
+    },
   },
   getters: {
-    getUserInfo(state){
+    getUserInfo(state) {
       return state;
-    }
-  }
+    },
+  },
 };

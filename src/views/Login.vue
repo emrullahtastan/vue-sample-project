@@ -1,21 +1,23 @@
 <template>
   <div>
-    <h4>Login page</h4>
+    <h4>{{ $t("login.title") }}</h4>
     <div>
       <div>
-        <label for="name">Name</label>
-        <input id="name" v-model="name">
+        <label for="name">{{ $t("login.form.name") }}</label>
+        <input id="name" v-model="name" />
       </div>
       <div>
-        <label for="email">E-mail</label>
-        <input id="email" type="email" v-model="email">
+        <label for="email">{{ $t("login.form.email") }}</label>
+        <input id="email" type="email" v-model="email" />
       </div>
       <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" v-model="password">
+        <label for="password">{{ $t("login.form.password") }}</label>
+        <input id="password" type="password" v-model="password" />
       </div>
       <div>
-        <button class="btn btn--primary" @click="login">Login</button>
+        <button class="btn btn--primary" @click="login">
+          {{ $t("loginButtonText") }}
+        </button>
       </div>
     </div>
   </div>
@@ -30,17 +32,17 @@ export default {
     return {
       name: null,
       email: null,
-      password: null
+      password: null,
     };
   },
   methods: {
     ...mapActions({
-      "setUserInfo": "set"
+      setUserInfo: "setUserInfo",
     }),
     login() {
       this.setUserInfo({ name: this.name, email: this.email });
-      this.$router.push('/');
-    }
-  }
+      this.$router.push("/");
+    },
+  },
 };
 </script>

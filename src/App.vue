@@ -1,31 +1,70 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/about" v-if="userInfo['email']">Logout</router-link>
-      <router-link to="/login" v-if="!userInfo['email']">Login</router-link>
-
-      <div style="display: inline" v-if="userInfo['email']"> | Hello {{ userInfo['name'] }}</div>
+      <router-link to="/">{{ $t("menu.home") }}</router-link>
+      |
+      <router-link to="/about">{{ $t("menu.about") }}</router-link>
+      |
+      <router-link v-if="userInfo['email']" to="/login">
+        <span @click="logout">
+          {{ $t("menu.logout") }}
+        </span>
+      </router-link>
+      <router-link v-if="!userInfo['email']" to="/login"
+        >{{ $t("menu.login") }}
+      </router-link>
+      |
+      <div style="display: inline-flex">
+        <div
+          v-if="visibleLangMenuItem('tr')"
+          style="cursor: pointer"
+          @click="changeLang('tr')"
+        >
+          Turkish
+        </div>
+        <div
+          v-if="visibleLangMenuItem('en')"
+          style="cursor: pointer"
+          @click="changeLang('en')"
+        >
+          English
+        </div>
+      </div>
+      <div v-if="userInfo['email']" style="display: inline">
+        | {{ $t("hello") + " " + userInfo["name"] }}
+      </div>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapActions, mapGetters } from "vuex";
+
 export default {
-  data(){
+  data() {
     return {
-      userInfo:this.getUserInfo()
-    }
+      userInfo: this.getUserInfo(),
+    };
   },
-  methods:{
-    ...mapGetters({
-      'getUserInfo':'getUserInfo'
-    })
+  methods: {
+    ...mapGetters({ getUserInfo: "getUserInfo" }),
+    ...mapActions({
+      "setLangKey": "setLanguage",
+      "clearUserInfo": "clearUserInfo",
+    }),
+    changeLang(langKey) {
+      this.setLangKey({ langKey });
+      this.$i18n.locale = langKey;
+    },
+    visibleLangMenuItem(langKey) {
+      return !(this.$i18n.locale === langKey);
+    },
+    logout() {
+      this.clearUserInfo();
+    },
   },
-}
+};
 </script>
 <style lang="scss">
 #app {
