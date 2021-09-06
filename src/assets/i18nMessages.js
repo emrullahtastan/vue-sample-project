@@ -8,30 +8,6 @@ export default {
     },
     hello: "Hello",
     home: {
-      title: "Anasayfa Başlık",
-    },
-    about: {
-      title: "Hakkımızda Başlık",
-    },
-    login: {
-      title: "Giriş Başlık",
-      form: {
-        name: "Ad",
-        email: "E-posta",
-        password: "Parola",
-      },
-    },
-    loginButtonText: "Giriş",
-  },
-  tr: {
-    menu: {
-      home: "Anasayfa",
-      about: "Hakkımızda",
-      logout: "Çıkış",
-      login: "Giriş",
-    },
-    hello: "Merhaba",
-    home: {
       title: "Home Title",
     },
     about: {
@@ -46,5 +22,29 @@ export default {
       },
     },
     loginButtonText: "Login",
+  },
+  tr: {
+    menu: {
+      home: "Anasayfa",
+      about: "Hakkımızda",
+      logout: "Çıkış",
+      login: "Giriş",
+    },
+    hello: "Merhaba",
+    home: {
+      title: "Anasayfa Başlık",
+    },
+    about: {
+      title: "Hakkımızda Başlık",
+    },
+    login: {
+      title: "Giriş Başlık",
+      form: {
+        name: "Ad",
+        email: "E-posta",
+        password: "Parola",
+      },
+    },
+    loginButtonText: "Giriş",
   },
 };
