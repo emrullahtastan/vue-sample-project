@@ -2,6 +2,10 @@
   width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  @include mqd("desktop"){
+    padding:20px;
+  }
 }
 
 .flex {
@@ -14,4 +18,13 @@
 
 .align-item-center{
   align-items: center;
+}
+
+.page-title{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p{
+  margin-bottom:10px;
 }
